@@ -1,18 +1,11 @@
 Rails.application.routes.draw do
 
-  scope '(:locale)', locale: /fr|en/ do
-    ActiveAdmin.routes(self)
-    devise_for :users
+  devise_for :users
 
-    if Rails.env.development?
-      root to: 'places#index'
-    elsif Rails.env.production?
-      root to: 'pages#home'
+  namespace :api do
+    namespace :v1 do
+      resources :places
     end
-    resources :places
-    resources :contacts
-    post 'places/filters', 'places#filters'
-    post 'places/monuments_filter', 'places#monuments_filter'
   end
 
 end

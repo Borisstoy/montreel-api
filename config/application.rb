@@ -16,7 +16,7 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Montreel
+module MontreelApi
   class Application < Rails::Application
     config.generators do |generate|
       generate.assets false
@@ -29,11 +29,9 @@ module Montreel
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    config.browserify_rails.commandline_options = '-t coffeeify --extension=".js.coffee"'
-    config.assets.paths << Rails.root.join('node_modules', 'snazzy-info-window', 'dist')
-    config.i18n.default_locale = :fr
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.api_only = true
   end
 end
 
